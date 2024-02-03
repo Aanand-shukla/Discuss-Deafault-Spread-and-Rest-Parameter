@@ -1,51 +1,57 @@
-// default Parameters;
+const data = [3, 45, 67, 89, 2, 56];
 
-function myname(a = 2, b = 5) {
-  return a * b;
-}
+const [first, second, third, fourth] = data;
 
-const data = myname(4, 5);
-const data2 = myname();
-const data3 = myname(3, "");
-const data4 = myname(null, 4);
-const data5 = myname(undefined, 4);
+console.log(first, second, third, fourth);
 
-console.log(
-  `data: ${data} and data2: ${data2} data3: ${data3} and data3: ${data3} and data5: ${data5} `
-);
+const [...mydata] = data;
+console.log(mydata);
 
-//  Spread Operator
+const { 5: fifth } = data;
 
-const num1 = [4, 5, 6, 7];
-const num2 = [6, 8, 9, 6, 8];
+console.log(fifth);
 
-const newArray = [num1, ...num2];
+const Breeds = {
+  firstDogBreedName: "pitbull",
+  secondDogBreedName: "German  Sheferd",
+  adress: {
+    fA: "America",
+    sA: "Germany",
+  },
+};
 
-const newArray2 = [...num1, ...num2];
-console.log(newArray, newArray2);
+const { firstDogBreedName, secondDogBreedName } = Breeds;
+console.log(firstDogBreedName, secondDogBreedName);
 
-let element = "";
-console.log(names);
-function spreads() {
-  for (let i = 0; i < names.length; i++) {
-    element += names[i];
-  }
-  console.log(element);
-}
+const { ...BreedsD } = Breeds;
+console.log(BreedsD);
 
-let names = "Aanand Shukla";
+const {
+  adress: { fA, sA: Second },
+} = Breeds;
+console.log(fA, Second);
 
-spreads(...names);
+//  diffrent Ways to selecting Elements
 
-//  Rest Parameter
+// getElementById:
 
-function spreads(...ab) {
-  for (let i = 0; i < ab.length; i++) {
-    element += ab[i];
-  }
-  console.log(element);
-}
+// Use Case: Ideal for selecting a single element with a unique ID.
+// Specificity: Very high specificity since IDs must be unique within the document.
+// Performance: Efficient and direct access.
+// Return Type: Returns the element or null if not found
 
-let names1 = "Aanand Shukla";
+let element1 = document.getElementById("fourth");
+console.log(element1, typeof element1);
 
-spreads(...names1);
+// getElementsByClassName:
+
+// Use Case: Suitable for selecting multiple elements with a common class.
+// Specificity: Medium specificity as classes can be shared among elements.
+// Performance: Generally performs well but returns a live HTMLCollection.
+// Return Type: Live HTMLCollection.
+
+let element2 = document.getElementsByClassName("third");
+console.log(element2, typeof element2);
+
+// element2.textContent = "new Text Content";
+element2.innerText = "new inner Txt";
